@@ -1,11 +1,11 @@
 from Adafruit_IO import Client                           #importing adafruit library
 from telegram.ext import Updater,MessageHandler,Filters  #importing telegram libraries
 #import os                                                #import os to get hidden keys
-#import random
+import random
 #get feed key of adafruit feed
 #feed_key = os.getenv('feed_key') 
 #creating a client
-aio = Client('Vijaymaramreddy','aio_VlKY06MRP8C1w6IH4trIkk8P19Vj')  
+aio = Client('Vijaymaramreddy','aio_iWXK44t5Q3R7JeayyDAYu4q7xY2B')  
 
 
 #lists 
@@ -24,7 +24,7 @@ def ledon(bot,update):
   animation_url = 'https://media.baamboozle.com/uploads/images/68811/1618179100_34871_gif-url.gif'
   bot.message.reply_text("Done,lights turned on!✌")
   update.bot.sendAnimation(chat_id=chat_id,animation=animation_url,duration=2)
-  aio.send('led', 1)
+  aio.send('light', 1)
 
 #to make the light OFF
 def ledoff(bot,update):
@@ -32,7 +32,7 @@ def ledoff(bot,update):
   path='https://labblog.uofmhealth.org/sites/lab/files/2018-11/michigan-med-l-ocd-study.gif'
   bot.message.reply_text("Done,lights turned off!👍")
   update.bot.sendAnimation(chat_id=chat_id,animation=path)
-  aio.send('led', 0)
+  aio.send('light', 0)
 
 #make fan ON
 def fanon(bot,update):
@@ -52,7 +52,7 @@ def fanoff(bot,update):
 
 #to get the status of light
 def lightOnorOff(bot,update):
-  feedLight = aio.receive('led')
+  feedLight = aio.receive('light')
   if(feedLight.value=='1'):
     bot.message.reply_text("ON")
   else:
