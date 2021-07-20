@@ -1,11 +1,11 @@
 from Adafruit_IO import Client                           #importing adafruit library
 from telegram.ext import Updater,MessageHandler,Filters  #importing telegram libraries
-#import os                                                #import os to get hidden keys
+import os                                                #import os to get hidden keys
 import random
 #get feed key of adafruit feed
-#feed_key = os.getenv('feed_key') 
+feed_key = os.getenv('feed_key') 
 #creating a client
-aio = Client('Vijaymaramreddy','aio_iWXK44t5Q3R7JeayyDAYu4q7xY2B')  
+aio = Client('Vijaymaramreddy',feed_key)  
 
 
 #lists 
@@ -116,8 +116,7 @@ def main(bot,update):
   else:
     inval(bot,update)
 
-BOT_TOKEN = '1889295016:AAEpt_DUnGzDq2iQ1g4LvGm8B61aJ-S1pqU'
-# os.getenv('BOT_TOKEN')
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 up = Updater(BOT_TOKEN,use_context=True)
 dp = up.dispatcher
 dp.add_handler(MessageHandler(Filters.text,main))
